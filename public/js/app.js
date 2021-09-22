@@ -2314,12 +2314,12 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    deletePost: function deletePost(id) {
+    deletePost: function deletePost(id, index) {
       var _this2 = this;
 
       var uri = "http://laravelvue.local/api/post/delete/".concat(id);
       this.axios["delete"](uri).then(function (response) {
-        _this2.posts.splice(_this2.posts.indexOf(id), 1);
+        _this2.posts.splice(index - 1, 1);
       });
     }
   }
@@ -20633,7 +20633,7 @@ var render = function() {
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        return _vm.deletePost(post.id)
+                        return _vm.deletePost(post.id, index)
                       }
                     }
                   },

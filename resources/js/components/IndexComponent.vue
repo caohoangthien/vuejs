@@ -23,7 +23,7 @@
                     <td>{{ post.title }}</td>
                     <td>{{ post.body }}</td>
                     <td class='text-center'><router-link :to="{name: 'edit', params: { id: post.id }}" class="btn btn-primary">Edit</router-link>
-                        <button class="btn btn-danger" @click.prevent="deletePost(post.id)">Delete</button></td>
+                        <button class="btn btn-danger" @click.prevent="deletePost(post.id, index)">Delete</button></td>
                 </tr>
             </tbody>
         </table>
@@ -44,11 +44,11 @@
       });
     },
     methods: {
-      deletePost(id)
+      deletePost(id, index)
       {
         let uri = `http://laravelvue.local/api/post/delete/${id}`;
         this.axios.delete(uri).then(response => {
-          this.posts.splice(this.posts.indexOf(id), 1);
+          this.posts.splice(index-1, 1);
         });
       }
     }
